@@ -44,7 +44,6 @@ class SentenseForWrite {
     
     static let sharedInstance = SentenseForWrite()
     
-//    let sentenseArr<SentenseProtocol> = [FirstSentense(), SecondSentense()]
     let sentenseArr = [FirstSentense(), SecondSentense()] as [Any]
     
     func saveComplet(target:SentenseProtocol, sentenseKey:String)  {
@@ -53,8 +52,6 @@ class SentenseForWrite {
         if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
             completDic = [:]
             for key in target.sentenseDic.keys {
-//                completDic.setValue("false", forKey: key )
-//                completDic[key] = "false"
                 completDic![key] = false
             }
         }else {
@@ -63,14 +60,16 @@ class SentenseForWrite {
         
         for key in (completDic?.keys)! {
             if key == sentenseKey {
-//                completDic?.setValue("true", forKey: sentenseKey)
                 completDic![key] = true
                 continue
             }
         }
-        
         UserDefaults.standard.set(completDic, forKey: target.saveKey)
     }
+    
+//    func getOriginSentense(key:String) -> String {
+//        return ""
+//    }
     
     func getProgress(target:SentenseProtocol) -> Double {
         
