@@ -38,18 +38,15 @@ extension WriteMainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let value = tableItems[indexPath.row]
-//        let cell = tableView.dequeueReusableCell(withClass: value.type.cellIdentifierType, for: indexPath)
-//        guard let itemCell = cell as? SavingProtocolCell else { return cell }
-//        itemCell.configureWith(model: value)
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "WriteItemTableViewCell")
         guard let itemCell = cell as? WriteItemTableViewCell else {
             return cell!
         }
         print("sentenseArr = \(String(describing: sentenseArr))")
-//        guard let data =  sentenseArr![indexPath.row] as! SentenseProtocol else {
         itemCell.setData(data: sentenseArr[indexPath.row])
-//        }
+        
+//        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
         
         return cell!
     }

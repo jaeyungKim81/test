@@ -48,7 +48,7 @@ class SentenseForWrite {
     
     func saveComplet(target:SentenseProtocol, sentenseKey:String)  {
         
-        var completDic: [String:Bool]?//= UserDefaults.standard.dictionary(forKey: target.saveKey)
+        var completDic: [String:Bool]?
         if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
             completDic = [:]
             for key in target.sentenseDic.keys {
@@ -89,6 +89,64 @@ class SentenseForWrite {
         }
     }
 
+    func getNoNextCompletKey(target:SentenseProtocol) -> String {
+        
+        var completDic: [String:Bool]?
+        if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
+            return ""
+        }else {
+            completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
+            
+            for key in (completDic?.keys)! {
+                if !completDic![key]! {
+                    return key
+                }
+            }
+        }
+        return ""
+    }
+    
+//    func getNoRandomCompletKey(target:SentenseProtocol) -> String {
+//        
+//        let completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
+//        if completDic == nil  {
+//            return ""
+//        }else {
+//            let index: Int = Int(arc4random_uniform(UInt32(completDic!.count)))
+//            let value = Array((completDic?.values)!)[index]
+//            if value {
+//                return Array((completDic?.keys)!)[index]
+//            }
+//        }
+//        return ""
+//    }
+//    
+//    func getNoNextCompletKey(target:SentenseProtocol, cnt:Int) -> String {
+//        
+//        var completDic: [String:Bool]?
+//        if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
+//            return ""
+//        }else {
+//            completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
+//            
+//            for key in (completDic?.keys)! {
+//                if !completDic![key]! {
+//                    return key
+//                }
+//            }
+//        }
+//        return ""
+//    }
+    
+//    private func isComplet(target:NSDictionary, cnt:Int) -> Bool {
+//
+//        let index: Int = Int(arc4random_uniform(UInt32(target.count)))
+////        let value = target.allValues[index] //target.value[index]
+//        let key = (Bool)target.allKeys[index]
+////        return (key, value)
+//        return key
+//    }
+    
 }
 
 

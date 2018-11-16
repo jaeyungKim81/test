@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PraticeWritingViewController" customModule="test" customModuleProvider="target">
             <connections>
+                <outlet property="completLabel" destination="aEX-Ma-Ayb" id="DaW-9P-Yzk"/>
                 <outlet property="contentLabel" destination="GUK-wO-woC" id="eN0-c4-d05"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="writeTextView" destination="mcn-PZ-r7a" id="sOT-Y3-klZ"/>
@@ -40,18 +41,27 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                 </textView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEX-Ma-Ayb">
+                    <rect key="frame" x="10" y="264" width="355" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="aEX-Ma-Ayb" firstAttribute="leading" secondItem="mcn-PZ-r7a" secondAttribute="leading" id="0UK-74-hC1"/>
                 <constraint firstItem="GUK-wO-woC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="4Po-WF-Q4n"/>
                 <constraint firstItem="mcn-PZ-r7a" firstAttribute="trailing" secondItem="GUK-wO-woC" secondAttribute="trailing" id="5YZ-Ie-QOX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="GUK-wO-woC" secondAttribute="top" constant="-20" id="6FY-hI-NzL"/>
+                <constraint firstItem="aEX-Ma-Ayb" firstAttribute="trailing" secondItem="mcn-PZ-r7a" secondAttribute="trailing" id="CRG-CJ-19H"/>
                 <constraint firstItem="mcn-PZ-r7a" firstAttribute="leading" secondItem="GUK-wO-woC" secondAttribute="leading" id="dCp-ao-tTX"/>
                 <constraint firstItem="mcn-PZ-r7a" firstAttribute="top" secondItem="GUK-wO-woC" secondAttribute="bottom" constant="22" id="eSn-9c-cQo"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GUK-wO-woC" secondAttribute="trailing" constant="10" id="teh-p8-ugy"/>
+                <constraint firstItem="aEX-Ma-Ayb" firstAttribute="top" secondItem="mcn-PZ-r7a" secondAttribute="bottom" constant="24" id="w00-kA-QdX"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="32.799999999999997" y="52.623688155922046"/>
         </view>
     </objects>
 </document>
