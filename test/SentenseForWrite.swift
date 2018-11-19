@@ -43,11 +43,10 @@ struct SecondSentense :SentenseProtocol {
 class SentenseForWrite {
     
     static let sharedInstance = SentenseForWrite()
-    
     let sentenseArr = [FirstSentense(), SecondSentense()] as [Any]
     
-    func saveComplet(target:SentenseProtocol, sentenseKey:String)  {
-        
+    func saveComplet(target:SentenseProtocol, sentenseKey:String)
+    {
         var completDic: [String:Bool]?
         if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
             completDic = [:]
@@ -67,9 +66,14 @@ class SentenseForWrite {
         UserDefaults.standard.set(completDic, forKey: target.saveKey)
     }
     
-//    func getOriginSentense(key:String) -> String {
-//        return ""
-//    }
+    func isAllComplet(target:SentenseProtocol) -> Bool {
+        let progress = getProgress(target: target)
+        if (progress >= 100.0) {
+            return true
+        }else {
+            return false
+        }
+    }
     
     func getProgress(target:SentenseProtocol) -> Double {
         
@@ -89,8 +93,8 @@ class SentenseForWrite {
         }
     }
 
-    func getNoNextCompletKey(target:SentenseProtocol) -> String {
-        
+    func getNoNextCompletKey(target:SentenseProtocol) -> String
+    {
         var completDic: [String:Bool]?
         if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
             return ""
@@ -106,46 +110,32 @@ class SentenseForWrite {
         return ""
     }
     
-//    func getNoRandomCompletKey(target:SentenseProtocol) -> String {
-//        
-//        let completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
-//        if completDic == nil  {
-//            return ""
-//        }else {
-//            let index: Int = Int(arc4random_uniform(UInt32(completDic!.count)))
-//            let value = Array((completDic?.values)!)[index]
-//            if value {
-//                return Array((completDic?.keys)!)[index]
-//            }
-//        }
-//        return ""
-//    }
-//    
-//    func getNoNextCompletKey(target:SentenseProtocol, cnt:Int) -> String {
-//        
-//        var completDic: [String:Bool]?
-//        if UserDefaults.standard.dictionary(forKey: target.saveKey) == nil  {
-//            return ""
-//        }else {
-//            completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
-//            
-//            for key in (completDic?.keys)! {
-//                if !completDic![key]! {
-//                    return key
-//                }
-//            }
-//        }
-//        return ""
-//    }
-    
-//    private func isComplet(target:NSDictionary, cnt:Int) -> Bool {
-//
-//        let index: Int = Int(arc4random_uniform(UInt32(target.count)))
-////        let value = target.allValues[index] //target.value[index]
-//        let key = (Bool)target.allKeys[index]
-////        return (key, value)
-//        return key
-//    }
+    func
+        getNoRandomCompletKey(target:SentenseProtocol) -> String
+    {
+        if isAllComplet(target: target) {
+            return ""
+        }
+        let completDic = UserDefaults.standard.dictionary(forKey: target.saveKey) as? [String : Bool]
+        if completDic == nil  {
+            return ""
+        }else {
+            let index: Int = Int(arc4random_uniform(UInt32(completDic!.count)))
+            print("randomCnt = \(index)")
+            
+            for i in index..<completDic!.count {
+                if !(Array((completDic?.values)!)[i]) {
+                    return Array((completDic?.keys)!)[i]
+                }
+            }
+            for i in 0..<index {
+                if !(Array((completDic?.values)!)[i]) {
+                    return Array((completDic?.keys)!)[i]
+                }
+            }
+        }
+        return ""
+    }
     
 }
 

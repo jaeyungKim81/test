@@ -24,10 +24,22 @@ class PraticeWritingViewController: UIViewController, UITextViewDelegate {
         
         writeTextView.delegate = self
 
-//        let keyArr = [String]((sentenseExam?.sentenseDic.keys)!)
         write.saveComplet(target: sentenseExam!, sentenseKey: "")
-        contentLabel?.text = write.getNoNextCompletKey(target: sentenseExam!) //keyArr[nowCnt]
+//        contentLabel?.text = write.getNoNextCompletKey(target: sentenseExam!)
+        contentLabel?.text = write.getNoRandomCompletKey(target: sentenseExam!)
         setCompletLabel()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if (write.isAllComplet(target: sentenseExam!)) {
+           let alertController =  UIAlertController(title: "", message: "Already complet", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "확인", style: .default) { (result : UIAlertAction) -> Void in
+                self.navigationController!.popViewController(animated: true)
+            }
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,19 +62,35 @@ class PraticeWritingViewController: UIViewController, UITextViewDelegate {
         
         let origin = sentenseExam?.sentenseDic[contentLabel.text!]
         if (origin == writeTxt) { //"The taxi arrived at the hotel."
-            alertController.message = "sucess"
+            
             write.saveComplet(target: sentenseExam!, sentenseKey: contentLabel.text!)
+            let allComplet = self.write.isAllComplet(target: self.sentenseExam!)
             setCompletLabel()
             
-            let okAction = UIAlertAction(title: "확인", style: .default) { (result : UIAlertAction) -> Void in
-                self.contentLabel?.text = self.write.getNoNextCompletKey(target: self.sentenseExam!)
+            if allComplet {
+                alertController.message = "congratulation all complet"
+            }else {
+                alertController.message = "sucess"
+                let okAction = UIAlertAction(title: "확인", style: .default) { (result : UIAlertAction) -> Void in
+                    
+                    if !(allComplet) {
+                        self.contentLabel.text = ""
+                        self.writeTextView.text = ""
+                        //                self.contentLabel?.text = self.write.getNoNextCompletKey(target: self.sentenseExam!)
+                        self.contentLabel?.text = self.write.getNoRandomCompletKey(target: self.sentenseExam!)
+                    }
+                }
+                alertController.addAction(okAction)
             }
-            alertController.addAction(okAction)
+            
         }else {
             alertController.message = "fail : \(String(describing: origin))"
-            contentLabel.text = ""
             let nextAction = UIAlertAction(title: "넘어가기", style: .default) { (result : UIAlertAction) -> Void in
-                self.contentLabel?.text = self.write.getNoNextCompletKey(target: self.sentenseExam!)
+
+                self.contentLabel.text = ""
+//                self.contentLabel?.text = self.write.getNoNextCompletKey(target: self.sentenseExam!)
+                self.contentLabel?.text = self.write.getNoRandomCompletKey(target: self.sentenseExam!)
+                self.writeTextView.text = ""
             }
             let okAction = UIAlertAction(title: "다시도전", style: .default) { (result : UIAlertAction) -> Void in
                 self.contentLabel?.text = ""
