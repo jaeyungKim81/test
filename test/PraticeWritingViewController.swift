@@ -42,6 +42,10 @@ class PraticeWritingViewController: UIViewController, UITextViewDelegate {
         }
     }
 
+    @IBAction func testBtnAction(_ sender: Any) {
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

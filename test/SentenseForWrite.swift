@@ -42,8 +42,14 @@ struct SecondSentense :SentenseProtocol {
 
 class SentenseForWrite {
     
-    static let sharedInstance = SentenseForWrite()
+    static let sharedInstance = SentenseForWrite(valueVar: "varTest")
     let sentenseArr = [FirstSentense(), SecondSentense()] as [Any]
+    
+    var varTest: String
+    
+    init(valueVar: String) {
+        varTest = valueVar
+    }
     
     func saveComplet(target:SentenseProtocol, sentenseKey:String)
     {
