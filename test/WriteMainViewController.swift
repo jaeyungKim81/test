@@ -14,12 +14,20 @@ class WriteMainViewController: UIViewController {
     
     private var sentenseArr: [SentenseProtocol] = []
     
+//    lazy var testView:UIView = {
+//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+//        view.backgroundColor = UIColor.blue
+//        return view
+//    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let write = SentenseForWrite.sharedInstance
         sentenseArr = write.sentenseArr as! [SentenseProtocol]
         // Do any additional setup after loading the view.
+        
+//        view.addSubview(testView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +75,8 @@ extension WriteMainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("tableView.deselectRow(at: indexPath, animated: true")
-
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         let vc = PraticeWritingViewController()
         vc.setModel(data: sentenseArr[indexPath.row])
         navigationController?.pushViewController(vc, animated:true)
